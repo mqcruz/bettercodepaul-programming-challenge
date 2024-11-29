@@ -8,6 +8,10 @@ import lombok.*;
 @NoArgsConstructor
 public class Country {
     String name;
-    long population;
+    double population;
     double area;
+
+    public double getPopulationDensity() {
+        return population/area;
+    }
 }

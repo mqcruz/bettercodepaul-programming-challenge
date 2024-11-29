@@ -10,4 +10,8 @@ public class Weather {
     int day;
     double maxTemp;
     double minTemp;
+
+    public double getTemperatureSpread() {
+        return maxTemp - minTemp;
+    }
 }
