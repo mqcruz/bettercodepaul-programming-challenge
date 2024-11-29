@@ -20,7 +20,7 @@ public class CsvFileReaderService<T> implements FileReaderService<T> {
         try(BufferedReader fileReader = new BufferedReader(new FileReader(filePath))) {
             String headerLine = fileReader.readLine();
             if(headerLine == null) {
-                throw new RuntimeException("Header line is empty");
+                throw new RuntimeException("Header line cannot be empty");
             }
 
             String[] headers = headerLine.split(delimiter);
