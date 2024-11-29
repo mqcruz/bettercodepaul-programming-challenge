@@ -1,6 +1,7 @@
 package de.bcxp.challenge.mapper;
 
 import de.bcxp.challenge.model.Country;
+import de.bcxp.challenge.utils.DoubleUtils;
 
 public class CountryMapper implements Mapper<Country> {
     @Override
@@ -16,7 +17,7 @@ public class CountryMapper implements Mapper<Country> {
                     country.setName(value);
                     break;
                 case "Population":
-                    country.setPopulation(Long.parseLong(value));
+                    country.setPopulation(DoubleUtils.fromLocalizedString(value));
                     break;
                 case "Area (km²)":
                     country.setArea(Double.parseDouble(value));
