@@ -1,4 +1,7 @@
 package de.bcxp.challenge.service;
 
-public interface FileReaderService {
+import java.util.List;
+
+public interface FileReaderService<T> {
+    List<T> readData(String resource, String delimiter);
 }
