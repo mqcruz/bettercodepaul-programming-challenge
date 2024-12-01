@@ -9,6 +9,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The {@code CsvFileReaderService} class provides functionality to read and parse
+ * CSV files. By implementing the {@link FileReaderService} interface, it reads data
+ * from a given file path and processes it into a list of type {@code T}.
+ *
+ * @param <T> The type of object that this service processes from the CSV data.
+ */
 public class CsvFileReaderService<T> implements FileReaderService<T> {
     private final String delimiter;
 
@@ -16,6 +23,14 @@ public class CsvFileReaderService<T> implements FileReaderService<T> {
         this.delimiter = delimiter;
     }
 
+    /**
+     * Reads and parses data from a CSV file specified by the file path, converting it into
+     * a list of type {@code T}.
+     *
+     * @param filePath The path to the CSV file to be read.
+     * @return A {@link List} of type {@code T} containing the parsed data from the CSV file.
+     * @throws RuntimeException if the file cannot be read or the header line is empty.
+     */
     @SuppressWarnings("unchecked")
     public List<T> readData(String filePath) {
         String fileName = filePath.substring(filePath.lastIndexOf("/") +1);
