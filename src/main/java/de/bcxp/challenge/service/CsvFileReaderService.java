@@ -17,9 +17,9 @@ public class CsvFileReaderService<T> implements FileReaderService<T> {
         Mapper<T> mapper = (Mapper<T>) MapperRegistry.getMapper(fileName);
 
         List<T> results = new ArrayList<>();
-        try(BufferedReader fileReader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader fileReader = new BufferedReader(new FileReader(filePath))) {
             String headerLine = fileReader.readLine();
-            if(headerLine == null) {
+            if (headerLine == null) {
                 throw new RuntimeException("Header line cannot be empty");
             }
 
@@ -32,9 +32,8 @@ public class CsvFileReaderService<T> implements FileReaderService<T> {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error reading data from file: ", e);
         }
         return results;
     }
-
 }

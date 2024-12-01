@@ -6,6 +6,7 @@ import lombok.*;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class Country {
     String name;
     double population;

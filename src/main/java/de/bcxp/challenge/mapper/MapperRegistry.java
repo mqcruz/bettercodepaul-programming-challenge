@@ -9,7 +9,7 @@ public class MapperRegistry {
             "weather.csv", new WeatherMapper());
 
     public static Mapper<?> getMapper(String fileName) {
-        if(registry.containsKey(fileName)) {
+        if (registry.containsKey(fileName)) {
             return registry.get(fileName);
         } else {
             throw new RuntimeException("File not found - fileName: " + fileName);
