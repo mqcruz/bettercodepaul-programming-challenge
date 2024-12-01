@@ -10,9 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CsvFileReaderService<T> implements FileReaderService<T> {
+    private final String delimiter;
+
+    public CsvFileReaderService(String delimiter) {
+        this.delimiter = delimiter;
+    }
 
     @SuppressWarnings("unchecked")
-    public List<T> readData(String filePath, String delimiter) {
+    public List<T> readData(String filePath) {
         String fileName = filePath.substring(filePath.lastIndexOf("/") +1);
         Mapper<T> mapper = (Mapper<T>) MapperRegistry.getMapper(fileName);
 

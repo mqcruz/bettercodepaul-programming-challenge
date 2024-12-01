@@ -11,8 +11,7 @@ public class CountryService {
 
     public CountryService(CsvFileReaderService csvFileReaderService) {
         String filePath = "src/main/resources/de/bcxp/challenge/countries.csv";
-        String delimiter = ";";
-        countryList = csvFileReaderService.readData(filePath, delimiter);
+        countryList = csvFileReaderService.readData(filePath);
 
     }
     public String getHighestPopulationDensityCountry() {

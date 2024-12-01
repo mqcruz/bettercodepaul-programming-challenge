@@ -22,7 +22,7 @@ class CountryServiceTest {
                 new Country("Germany", 1000, 10),
                 new Country("Portugal", 500, 2)
         );
-        Mockito.when(mockReaderService.readData(Mockito.anyString(), Mockito.anyString())).thenReturn(countries);
+        Mockito.when(mockReaderService.readData(Mockito.anyString())).thenReturn(countries);
 
         CountryService countryService = new CountryService(mockReaderService);
         assertEquals("Portugal", countryService.getHighestPopulationDensityCountry());
@@ -31,7 +31,7 @@ class CountryServiceTest {
     @Test
     void testGetHighestPopulationDensityCountryEmptyList() {
         CsvFileReaderService mockReaderService = Mockito.mock(CsvFileReaderService.class);
-        Mockito.when(mockReaderService.readData(Mockito.anyString(), Mockito.anyString())).thenReturn(Collections.emptyList());
+        Mockito.when(mockReaderService.readData(Mockito.anyString())).thenReturn(Collections.emptyList());
 
         CountryService countryService = new CountryService(mockReaderService);
         assertThrows(NoSuchElementException.class, countryService::getHighestPopulationDensityCountry);

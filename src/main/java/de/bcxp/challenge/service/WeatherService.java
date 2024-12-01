@@ -10,8 +10,7 @@ public class WeatherService {
 
     public WeatherService(CsvFileReaderService csvFileReaderService) {
         String filePath = "src/main/resources/de/bcxp/challenge/weather.csv";
-        String delimiter = ",";
-        weatherList = csvFileReaderService.readData(filePath, delimiter);
+        weatherList = csvFileReaderService.readData(filePath);
     }
 
     public int getSmallestTempSpreadDay() {

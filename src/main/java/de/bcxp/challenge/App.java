@@ -14,10 +14,9 @@ public final class App {
      * @param args The CLI arguments passed
      */
     public static void main(String... args) {
-        CsvFileReaderService csvFileReaderService = new CsvFileReaderService();
 
-        CountryService countryService = new CountryService(csvFileReaderService);
-        WeatherService weatherService = new WeatherService(csvFileReaderService);
+        CountryService countryService = new CountryService(new CsvFileReaderService(",;"));
+        WeatherService weatherService = new WeatherService(new CsvFileReaderService(","));
 
         System.out.printf("Day with smallest temperature spread: %s%n", weatherService.getSmallestTempSpreadDay());
         System.out.printf("Country with highest population density: %s%n", countryService.getHighestPopulationDensityCountry());

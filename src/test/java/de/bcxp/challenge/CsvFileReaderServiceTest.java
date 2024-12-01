@@ -14,8 +14,8 @@ class CsvFileReaderServiceTest {
     void testReadDataValidFile() {
         String filePath = "src/test/resources/success/countries.csv";
 
-        CsvFileReaderService<Country> csvReaderService = new CsvFileReaderService<>();
-        List<Country> results = csvReaderService.readData(filePath, ";");
+        CsvFileReaderService<Country> csvReaderService = new CsvFileReaderService<>( ";");
+        List<Country> results = csvReaderService.readData(filePath);
 
         assertEquals(1, results.size());
         assertEquals("Austria", results.get(0).getName());
@@ -25,8 +25,8 @@ class CsvFileReaderServiceTest {
     void testReadDataFileNotFound() {
         String filePath = "src/test/resources/countries2.csv";
 
-        CsvFileReaderService<Country> csvReaderService = new CsvFileReaderService<>();
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> csvReaderService.readData(filePath, ";"));
+        CsvFileReaderService<Country> csvReaderService = new CsvFileReaderService<>( ";");
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> csvReaderService.readData(filePath));
         assertTrue(exception.getMessage().contains("File not found - fileName: countries2.csv"));
     }
 
@@ -34,8 +34,8 @@ class CsvFileReaderServiceTest {
     void testReadDataHeaderNotFound() {
         String filePath = "src/test/resources/failure/countries.csv";
 
-        CsvFileReaderService<Country> csvReaderService = new CsvFileReaderService<>();
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> csvReaderService.readData(filePath, ";"));
+        CsvFileReaderService<Country> csvReaderService = new CsvFileReaderService<>( ";");
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> csvReaderService.readData(filePath));
         assertTrue(exception.getMessage().contains("Header line cannot be empty"));
     }
 
@@ -43,8 +43,8 @@ class CsvFileReaderServiceTest {
     void testReadingDataFailure() {
         String filePath = "nothing/test/resources/failure/countries.csv";
 
-        CsvFileReaderService<Weather> csvReaderService = new CsvFileReaderService<>();
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> csvReaderService.readData(filePath, ","));
+        CsvFileReaderService<Weather> csvReaderService = new CsvFileReaderService<>( ";");
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> csvReaderService.readData(filePath));
         assertTrue(exception.getMessage().contains("Error reading data from file"));
     }
 }
