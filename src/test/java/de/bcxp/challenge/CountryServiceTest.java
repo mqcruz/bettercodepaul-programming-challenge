@@ -3,6 +3,7 @@ package de.bcxp.challenge;
 import de.bcxp.challenge.model.Country;
 import de.bcxp.challenge.service.CountryService;
 import de.bcxp.challenge.service.CsvFileReaderService;
+import de.bcxp.challenge.service.WeatherService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -22,18 +23,13 @@ class CountryServiceTest {
                 new Country("Germany", 1000, 10),
                 new Country("Portugal", 500, 2)
         );
-        Mockito.when(mockReaderService.readData(Mockito.anyString())).thenReturn(countries);
 
-        CountryService countryService = new CountryService(mockReaderService);
-        assertEquals("Portugal", countryService.getHighestPopulationDensityCountry());
+        assertEquals("Portugal", CountryService.getHighestPopulationDensityCountry(countries));
     }
 
     @Test
     void testGetHighestPopulationDensityCountryEmptyList() {
-        CsvFileReaderService mockReaderService = Mockito.mock(CsvFileReaderService.class);
-        Mockito.when(mockReaderService.readData(Mockito.anyString())).thenReturn(Collections.emptyList());
+        assertThrows(NoSuchElementException.class, () -> CountryService.getHighestPopulationDensityCountry(Collections.emptyList()));
 
-        CountryService countryService = new CountryService(mockReaderService);
-        assertThrows(NoSuchElementException.class, countryService::getHighestPopulationDensityCountry);
     }
 }

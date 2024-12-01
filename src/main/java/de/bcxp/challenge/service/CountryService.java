@@ -12,27 +12,14 @@ import java.util.NoSuchElementException;
  */
 public class CountryService {
 
-    private final List<Country> countryList;
-
-    /**
-     * Constructs a new CountryService with the specified FileReaderService.
-     * It reads country data from a file located in the resources.
-     *
-     * @param fileReaderService a service for reading files
-     */
-    public CountryService(FileReaderService fileReaderService) {
-        String filePath = "src/main/resources/de/bcxp/challenge/countries.csv";
-        countryList = fileReaderService.readData(filePath);
-
-    }
-
     /**
      * Returns the name of the country with the highest population density.
      *
+     * @param  countryList a list of countries
      * @return the name of the country with the highest population density
      * @throws NoSuchElementException if there are no countries in the list
      */
-    public String getHighestPopulationDensityCountry() {
-        return this.countryList.stream().max(Comparator.comparingDouble(Country::getPopulationDensity)).orElseThrow().getName();
+    public static String getHighestPopulationDensityCountry(List<Country> countryList) {
+        return countryList.stream().max(Comparator.comparingDouble(Country::getPopulationDensity)).orElseThrow().getName();
     }
 }

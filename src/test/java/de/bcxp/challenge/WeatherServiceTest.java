@@ -23,16 +23,11 @@ class WeatherServiceTest {
         );
         Mockito.when(mockReaderService.readData(Mockito.anyString())).thenReturn(weatherData);
 
-        WeatherService weatherService = new WeatherService(mockReaderService);
-        assertEquals(2, weatherService.getSmallestTempSpreadDay());
+        assertEquals(2, WeatherService.getSmallestTempSpreadDay(weatherData));
     }
 
     @Test
     void testGetSmallestTempSpreadDayEmptyList() {
-        CsvFileReaderService mockReaderService = Mockito.mock(CsvFileReaderService.class);
-        Mockito.when(mockReaderService.readData(Mockito.anyString())).thenReturn(Collections.emptyList());
-
-        WeatherService weatherService = new WeatherService(mockReaderService);
-        assertThrows(NoSuchElementException.class, weatherService::getSmallestTempSpreadDay);
+        assertThrows(NoSuchElementException.class, () -> WeatherService.getSmallestTempSpreadDay(Collections.emptyList()));
     }
 }
